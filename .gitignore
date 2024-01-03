@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# Build
+build/
+dist/
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
