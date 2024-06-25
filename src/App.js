@@ -4,9 +4,22 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import HomeLayout from './layouts/HomeLayout';
 
 import { publicRoutes, privateRoutes } from './routes';
+import { useEffect } from 'react';
+import { actions, useGlobalContext } from './context';
 
 
 function App() {
+
+  const [state, dispatch] = useGlobalContext();
+
+  useEffect(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      dispatch(actions.setTheme('light'));
+    } else {
+      dispatch(actions.setTheme('dark'));
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -15,7 +28,7 @@ function App() {
           if (route.layout) {
             Layout = route.layout;
           }
-          else if( route.layout === null) {
+          else if (route.layout === null) {
             Layout = Fragment;
           }
           const Page = route.component;

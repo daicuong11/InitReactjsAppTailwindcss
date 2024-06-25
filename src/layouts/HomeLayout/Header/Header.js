@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { actions, useGlobalContext } from "../../../context";
-import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignIn, faSignOut, faSun } from "@fortawesome/free-solid-svg-icons";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
@@ -10,15 +9,6 @@ import Button from "../../../components/Button/Button";
 const Header = (props) => {
     const [state, dispatch] = useGlobalContext();
     const { theme } = state;
-
-    useEffect(() => {
-        localStorage.theme = theme;
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    }, [theme]);
 
     const handleChangeTheme = () => {
         dispatch(actions.setTheme(theme));
